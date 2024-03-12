@@ -1,0 +1,40 @@
+{
+  "name": "asset-sentimentoor",
+  "version": "0.0.1",
+  "description": "Utiliizing a NLP to gage currency and asset sentiment on social media posts and trends. ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tsc --watch",
+    "lint": "eslint --ext .js,.ts",
+    "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/0xCozart/red.git"
+  },
+  "keywords": [
+    "NLP",
+    "GPT-4",
+    "Cryptocurrency",
+    "Web3",
+    "AI",
+    "Typescript",
+    "X",
+    "Node.js"
+  ],
+  "author": "Alan Vega",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/0xCozart/red/issues"
+  },
+  "homepage": "https://github.com/0xCozart/red#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^7.2.0",
+    "@typescript-eslint/parser": "^7.2.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "prettier": "^3.2.5",
+    "typescript": "^5.4.2"
+  }
+}
