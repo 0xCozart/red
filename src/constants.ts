@@ -1,8 +1,8 @@
-import * as dotenv from 'dotenv'
+import * as dotenv from 'dotenv';
 
-import path from 'path'
+import path from 'path';
 
-dotenv.config({ path: path.resolve(__dirname, '..', '.env') })
+dotenv.config({ path: path.resolve(__dirname, '..', '.env') });
 
 export const {
   TWITTER_BEARER_TOKEN,
@@ -10,4 +10,12 @@ export const {
   TWITTER_ACCESS_TOKEN_SECRET,
   TWITTER_API_KEY,
   TWITTER_API_KEY_SECRET
-} = <{ [key: string]: string }>process.env
+} = <{ [key: string]: string }>process.env;
+
+console.log({
+  TWITTER_BEARER_TOKEN,
+  TWITTER_ACCESS_TOKEN,
+  TWITTER_ACCESS_TOKEN_SECRET,
+  TWITTER_API_KEY,
+  TWITTER_API_KEY_SECRET
+});
