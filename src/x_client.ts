@@ -1,7 +1,6 @@
 import { Client } from 'twitter-api-sdk';
-import { TWITTER_BEARER_TOKEN } from './constants';
 
-const client = new Client(TWITTER_BEARER_TOKEN);
+const client = new Client(process.env.TWITTER_BEARER_TOKEN as string);
 
 async function main() {
   const stream = client.tweets.sampleStream({
@@ -12,5 +11,19 @@ async function main() {
     console.log(tweet.data?.author_id);
   }
 }
+
+//Import package
+import { auth } from 'twitter-api-sdk';
+
+// Initialize auth client first
+const authClient = new auth.OAuth2User({
+  client_id: process.env.CLIENT_ID as string,
+  client_secret: process.env.CLIENT_SECRET as string,
+  callback: 'YOUR-CALLBACK',
+  scopes: ['tweet.read', 'users.read', 'offline.access']
+});
+
+// Pass auth credentials to the library client
+const twitterClient = new Client(authClient);
 
 main();
