@@ -11,11 +11,3 @@ export const {
   TWITTER_API_KEY,
   TWITTER_API_KEY_SECRET
 } = <{ [key: string]: string }>process.env;
-
-console.log({
-  TWITTER_BEARER_TOKEN,
-  TWITTER_ACCESS_TOKEN,
-  TWITTER_ACCESS_TOKEN_SECRET,
-  TWITTER_API_KEY,
-  TWITTER_API_KEY_SECRET
-});
