@@ -1,10 +1,20 @@
-import { TWITTER_BEARER_TOKEN } from './constants';
+import { TWITTER_API_KEY, TWITTER_API_KEY_SECRET } from './constants';
+
 import { TwitterApi } from 'twitter-api-v2';
 
-const client = new TwitterApi(TWITTER_BEARER_TOKEN);
-client.appLogin();
+const client = new TwitterApi({
+  appKey: TWITTER_API_KEY,
+  appSecret: TWITTER_API_KEY_SECRET
+});
 
-console.log({ client });
+const authedClient = async () => {
+  await client.appLogin();
+  console.log({ client });
+};
+
+authedClient();
+
+// console.log({ authedClient });
 
 // import { Client } from 'twitter-api-sdk';
 // //Import package
