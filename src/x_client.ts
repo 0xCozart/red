@@ -1,18 +1,46 @@
+import { ETwitterStreamEvent, TwitterApi } from 'twitter-api-v2';
 import { TWITTER_API_KEY, TWITTER_API_KEY_SECRET } from './constants';
 
-import { TwitterApi } from 'twitter-api-v2';
-
-const client = new TwitterApi({
-  appKey: TWITTER_API_KEY,
-  appSecret: TWITTER_API_KEY_SECRET
-});
-
 const authedClient = async () => {
+  const client = new TwitterApi({
+    appKey: TWITTER_API_KEY,
+    appSecret: TWITTER_API_KEY_SECRET
+  });
   await client.appLogin();
-  console.log({ client });
+
+  return client.v2;
 };
 
-authedClient();
+async function main() {
+  const client = await authedClient();
+
+  // get current rules for tweet streams
+  const rules = await client.streamRules();
+  if (rules.data.length) {
+    await client.updateStreamRules({
+      delete: { ids: rules.data.map(rule => rule.id) }
+    });
+  }
+
+  // add search rules
+  await client.updateStreamRules({
+    add: [{ value: '$ZYN' }]
+  });
+
+  // create stream with new rules
+  const stream = await client.searchStream({
+    'tweet.fields': ['referenced_tweets', 'author_id'],
+    expansions: ['referenced_tweets.id']
+  });
+
+  stream.autoReconnect = true;
+
+  stream.on(ETwitterStreamEvent.Data, async tweet => {
+    console.log(tweet);
+  });
+}
+
+main();
 
 // console.log({ authedClient });
 
