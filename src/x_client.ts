@@ -2,13 +2,16 @@ import { ETwitterStreamEvent, TwitterApi } from 'twitter-api-v2';
 import { TWITTER_API_KEY, TWITTER_API_KEY_SECRET } from './constants';
 
 const authedClient = async () => {
+  // const client = new Client(TWITTER_BEARER_TOKEN);
   const client = new TwitterApi({
     appKey: TWITTER_API_KEY,
     appSecret: TWITTER_API_KEY_SECRET
   });
-  await client.appLogin();
-
-  return client.v2;
+  const authenticatedClient = await client.appLogin();
+  console.log({ authenticatedClient });
+  // const readOnlyClient = authenticatedClient.readOnly;
+  // console.log({ readOnlyClient });
+  return authenticatedClient.v2;
 };
 
 async function main() {
